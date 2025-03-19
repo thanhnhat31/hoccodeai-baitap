@@ -68,6 +68,50 @@ if __name__ == "__main__":
 ============
 
 - Prompt 5
+Read the below JSON and introducing sightseeing spots, activities, famous dishes, and best times to visit.
+The result should consider below points:
+- Prioritize places having activities related to sea.
+- Don't recommend anything related to alcohol, cigarettes.
+- Suggest places that have souvenir that can bring home.
+- Arrange time to visit on ascending order.
+====================
+[
+  {
+    "Sightseeing Location Name": "Ha Long Bay",
+    "Location Description": "One of the world's natural wonders, Ha Long Bay is famous for its thousands of limestone islands rising from the emerald waters.",
+    "Activities and Entertainment": ["Cruising the bay", "Exploring caves", "Kayaking", "Swimming"],
+    "Famous Dishes and Specialties": ["Fresh seafood", "Ha Long grilled chopped squid", "Horseshoe crab"],
+    "Best Time to Visit": "Spring (March - April) and Autumn (September - November)"
+  },
+  {
+    "Sightseeing Location Name": "Hoi An Ancient Town",
+    "Location Description": "A UNESCO World Heritage Site, Hoi An Ancient Town is famous for its ancient houses, shimmering lantern-lit streets, and peaceful, romantic atmosphere.",
+    "Activities and Entertainment": ["Evening strolls through the ancient town", "Visiting ancient houses", "Boat trips on the Hoai River", "Enjoying local cuisine", "Shopping"],
+    "Famous Dishes and Specialties": ["Cao Lau", "Quang Noodles", "White Rose Dumplings", "Hoi An Chicken Rice"],
+    "Best Time to Visit": "Dry season (February - August)"
+  },
+  {
+    "Sightseeing Location Name": "Sa Pa",
+    "Location Description": "Sa Pa is a highland town famous for its majestic mountain scenery, picturesque terraced fields, and unique ethnic minority cultures.",
+    "Activities and Entertainment": ["Climbing Fansipan", "Trekking through ethnic villages", "Visiting local markets", "Snow watching in winter"],
+    "Famous Dishes and Specialties": ["Thang Co", "Five-color sticky rice", "Buffalo jerky", "Apple wine"],
+    "Best Time to Visit": "Spring (March - May) and Autumn (September - November)"
+  },
+  {
+    "Sightseeing Location Name": "Da Lat",
+    "Location Description": "Known as the 'City of a Thousand Flowers,' Da Lat is famous for its cool climate, poetic natural scenery, and classic French architecture.",
+    "Activities and Entertainment": ["Visiting flower gardens", "Strolling around Xuan Huong Lake", "Visiting waterfalls", "Enjoying local cuisine"],
+    "Famous Dishes and Specialties": ["Grilled rice paper", "Chicken hotpot with basil leaves", "Da Lat strawberries", "Da Lat coffee"],
+    "Best Time to Visit": "Year-round"
+  },
+  {
+    "Sightseeing Location Name": "Phu Quoc",
+    "Location Description": "Phu Quoc is Vietnam's largest island, famous for its pristine beaches, crystal-clear waters, and diverse marine ecosystem.",
+    "Activities and Entertainment": ["Swimming", "Snorkeling", "Visiting fishing villages", "Night squid fishing", "Visiting fish sauce factories"],
+    "Famous Dishes and Specialties": ["Fresh seafood", "Herring salad", "Sea urchin with green onion oil", "Phu Quoc fish sauce"],
+    "Best Time to Visit": "Dry season (November - April)"
+  }
+]
 
 - Prompt 6
 Please summarize the following article and list up characters appear in it.
