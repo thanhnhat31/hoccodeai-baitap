@@ -8,7 +8,6 @@
 #   5. Viết prompt và gửi nội dung đã parse lên API để tóm tắt. (Xem lại bài prompt engineering nha!)
 #
 
-
 from dotenv import load_dotenv
 import os
 from openai import OpenAI
@@ -53,16 +52,13 @@ def main():
                 - Maintain a positive spin on the content, highlighting uplifting or amusing aspects where possible
                 - If suitable, incorporate a touch of wit or humor to make the summary more engaging"""
     
-
-
-
     # Get user input
     url = input("Enter the website link: ")
     if(url.__len__() > 0):
         content = getContentFromUrl(url)
     
     # Append content into prompt
-    llm_promt = llm_promt + "\n" + content
+    llm_promt = llm_promt + "\n" + "===" + content + +"\n" + "==="
 
     #Create OpenAI client
     client = OpenAI(
