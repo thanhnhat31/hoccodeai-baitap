@@ -8,6 +8,7 @@
 #   5. Viết prompt và gửi nội dung đã parse lên API để tóm tắt. (Xem lại bài prompt engineering nha!)
 #
 
+
 from dotenv import load_dotenv
 import os
 from openai import OpenAI
@@ -44,13 +45,14 @@ def main():
 
     # Prompt info
     llm_role="system"
-    llm_promt = """Please summarize the following article while focusing on the key points and important details. Your summary should be concise yet informative, capturing the essence of the content. As you summarize, try to maintain a positive tone and inject a bit of humor where appropriate, without detracting from the core message. Write the summary in Vietnamese.
-                When generating the summary, consider the following:
-                - Identify and include the main ideas, central themes, and crucial plot points
-                - Omit unnecessary details or tangential information that doesn't contribute to the overall understanding
-                - Use clear and concise language to convey the summary effectively
-                - Maintain a positive spin on the content, highlighting uplifting or amusing aspects where possible
-                - If suitable, incorporate a touch of wit or humor to make the summary more engaging"""
+    # llm_promt = """Please summarize the following article while focusing on the key points and important details. Your summary should be concise yet informative, capturing the essence of the content. As you summarize, try to maintain a positive tone and inject a bit of humor where appropriate, without detracting from the core message. Write the summary in Vietnamese.
+    #             When generating the summary, consider the following:
+    #             - Identify and include the main ideas, central themes, and crucial plot points
+    #             - Omit unnecessary details or tangential information that doesn't contribute to the overall understanding
+    #             - Use clear and concise language to convey the summary effectively
+    #             - Maintain a positive spin on the content, highlighting uplifting or amusing aspects where possible
+    #             - If suitable, incorporate a touch of wit or humor to make the summary more engaging"""
+    llm_promt=os.getenv('SUMMARIZE_PROMPT')
     
     # Get user input
     url = input("Enter the website link: ")

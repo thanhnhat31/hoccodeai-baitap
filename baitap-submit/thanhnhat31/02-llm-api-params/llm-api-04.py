@@ -86,7 +86,8 @@ def translateContent(content, api_url, api_key, model):
 
     # Prompt info
     llm_role="system"
-    llm_prompt="""Translate the following document from English to Vietnamese. The translation should be accurate, clear, and maintain the original meaning and tone. Preserve the original formatting as much as possible. Use formal language appropriate for the document."""
+    #llm_prompt="""Translate the following document from English to Vietnamese. The translation should be accurate, clear, and maintain the original meaning and tone. Preserve the original formatting as much as possible. Use formal language appropriate for the document."""
+    llm_promt=os.getenv('TRANSLATE_PROMPT')
     llm_prompt = llm_prompt + "\n" + "===" + "\n" + content + "\n" + "==="
 
     # Generate message
