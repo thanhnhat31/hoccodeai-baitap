@@ -59,13 +59,16 @@ def main():
     BASE_URL = os.getenv('BASE_URL')
     API_KEY = os.getenv('API_KEY')
     MODEL = os.getenv('MODEL')
-    llm_prompt = os.getenv('GENERATE_CODE_PROMPT')
-
-    user_input = input("Enter your question: ")
-
-    if(user_input.__len__() > 0):
+    system_prompt = os.getenv('GENERATE_CODE_PROMPT', "Please write a Python program to solve the following problem:")
+    content_prompt = input("Enter your question: ")
+    if(content_prompt.__len__() > 0):
         # Append user input into prompt
-        llm_prompt = llm_prompt + "\n" + "===" + "\n" + user_input + "\n" + "==="
+        #llm_prompt = llm_prompt + "\n" + "===" + "\n" + user_input + "\n" + "==="
+        llm_prompt = f"""{system_prompt}
+                        ===
+                        {content_prompt}
+                        ==="""
+
         response = getResponseFromLLM(BASE_URL,API_KEY, MODEL, llm_prompt)
         if response.__len__() > 0:
             # Insert response into file

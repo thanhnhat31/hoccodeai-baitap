@@ -76,7 +76,7 @@ def read_pdf_in_chunks(file_path, chunk_size=1024):
 
 #     return chunks
 
-def translateContent(content, api_url, api_key, model):
+def translateContent(content_prompt, api_url, api_key, model):
     translated_content = ""
     # Call API to translate content
     client = OpenAI(
@@ -87,8 +87,12 @@ def translateContent(content, api_url, api_key, model):
     # Prompt info
     llm_role="system"
     #llm_prompt="""Translate the following document from English to Vietnamese. The translation should be accurate, clear, and maintain the original meaning and tone. Preserve the original formatting as much as possible. Use formal language appropriate for the document."""
-    llm_promt=os.getenv('TRANSLATE_PROMPT')
-    llm_prompt = llm_prompt + "\n" + "===" + "\n" + content + "\n" + "==="
+    system_prompt=os.getenv('TRANSLATE_PROMPT', "Please translate the following article.")
+    #llm_prompt = llm_prompt + "\n" + "===" + "\n" + content + "\n" + "==="
+    llm_prompt = f"""{system_prompt}
+                ===
+                {content_prompt}
+                ==="""
 
     # Generate message
     input_messages = [

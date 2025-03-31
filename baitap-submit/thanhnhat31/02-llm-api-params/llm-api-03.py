@@ -52,15 +52,19 @@ def main():
     #             - Use clear and concise language to convey the summary effectively
     #             - Maintain a positive spin on the content, highlighting uplifting or amusing aspects where possible
     #             - If suitable, incorporate a touch of wit or humor to make the summary more engaging"""
-    llm_promt=os.getenv('SUMMARIZE_PROMPT')
+    system_prompt=os.getenv('SUMMARIZE_PROMPT', "Please summarize the following article")
     
     # Get user input
     url = input("Enter the website link: ")
     if(url.__len__() > 0):
-        content = getContentFromUrl(url)
+        content_prompt = getContentFromUrl(url)
     
     # Append content into prompt
-    llm_promt = llm_promt + "\n" + "===" + content + +"\n" + "==="
+    #llm_promt = llm_promt + "\n" + "===" + content + +"\n" + "==="
+    llm_prompt = f"""{system_prompt}
+                ===
+                {content_prompt}
+                ==="""
 
     #Create OpenAI client
     client = OpenAI(
@@ -72,7 +76,7 @@ def main():
     input_messages = [
         {
             "role": llm_role,
-            "content": llm_promt
+            "content": llm_prompt
         },
     ]
 
