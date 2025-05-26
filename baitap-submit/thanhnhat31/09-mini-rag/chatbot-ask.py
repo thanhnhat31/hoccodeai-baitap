@@ -8,14 +8,16 @@
 
 import json
 import os
-import pprint
 from dotenv import load_dotenv
 import chromadb
 from chromadb.utils import embedding_functions
 from openai import OpenAI
 import wikipedia
 import inspect
-from pydantic import TypeAdapter
+from pydantic import TypeAdapter, BaseModel
+
+class QuestionSubject(BaseModel):
+    subject: str
 
 def collection_exists(collection_name, rag_client) -> bool:
     collections = rag_client.list_collections()
@@ -76,7 +78,24 @@ def find_subject(message: str, openai_client, model) -> str:
         )
 
         subject = chat_completion.choices[0].message.content
+
         print(f"Theme: {subject}")
+
+        # Use structure_output to get response in wanting format
+        chat_completion = openai_client.beta.chat.completions.parse(
+            model=model,
+            messages=messages,
+            response_format=QuestionSubject
+        )
+
+        structured_response = chat_completion.choices[0].message.content
+        print(f"Structured Response: {structured_response}")
+        structured_subject = json.loads(structured_response).get("subject", "").strip()
+        print(f"Theme: {structured_subject}")
+
+        # #subject = chat_completion.choices[0].message.content
+        # subject = json.loads(chat_completion.choices[0].message.content).get("subject", "").strip()
+        
         return subject
     except Exception  as ex:
         print(f"Error: {ex}")
@@ -149,7 +168,7 @@ def get_answer(question: str):
     global openai_client, model
 
     messages = [
-        {"role": "system", "content": "You are a helpful AI assistant. Use the supplied tools to answer the question from user."},
+        {"role": "system", "content": "You are a helpful AI assistant. Use the supplied tools to answer the question from user. If you don't know the answer, just say 'I don't know'."},
         {"role": "user", "content": question}
     ]
 
